@@ -12,6 +12,8 @@ package lk.Exam.src.bo;
 
 import lk.Exam.src.bo.custom.impl.CustomerBOimpl;
 
+import static lk.Exam.src.bo.BOFactory.BOType.ITEM;
+
 /**
  * @author Hashan Saminda <hashansaminda21@gmail.com> (Rdxhashan.tk/)
  * @since 10/9/2021
@@ -32,17 +34,20 @@ public class BOFactory {
         return boFactory;
 
     }
+    public enum BOType {
+        CUSTOMER,ITEM
+
+    }
 
     public <T extends SuperBO>T getBO(BOType boType) {
         switch (boType) {
-            case CUSTOMER:
-                return (T) new CustomerBOimpl();
+            case CUSTOMER:return (T) new CustomerBOimpl();
+            case ITEM:return (T) new ItemBOimpl();
+
             default:
                 return null;
         }
     }
 
-    public enum BOType {
-        CUSTOMER
-    }
+
 }
